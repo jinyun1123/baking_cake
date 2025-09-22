@@ -17,6 +17,14 @@
             background: linear-gradient(to left, #f6ba4a, #f9eab3);
         }
 
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+
         .footer {
             background-color: #f9eab3;
             padding: 20px 0;
@@ -28,18 +36,38 @@
             color: #fffaf5;
         }
 
-        h5,
-        p {
-            color: #fffaf5;
+        /* 輪播圖 */
+        .carousel-img {
+            height: clamp(260px, 100vh, 720px);
+            object-fit: cover;
         }
 
-        .nav a {
+        /* 小螢幕字幕可讀性：半透明毛玻璃底＋圓角 */
+        .caption-glass {
+            background: rgba(0, 0, 0, .35);
+            backdrop-filter: saturate(160%) blur(6px);
+            border-radius: 12px;
+            padding: .75rem 1rem;
+        }
+
+        .caption-glass h5 {
+            color: #f2f2f2;
+        }
+
+        .caption-glass p {
+            color: #cbcbcb;
+        }
+
+        /* 導覽列 */
+        .nav a,
+        .mobile-menu a {
             color: #333;
             transition: all 0.3s ease;
             text-decoration: none;
         }
 
-        .nav a:hover {
+        .nav a:hover,
+        .mobile-menu a:hover {
             color: #a0522d;
             text-decoration: underline;
         }
@@ -48,6 +76,113 @@
             background-position: center center;
             background-size: cover;
         }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            border: 0;
+            background: transparent;
+            font-size: 26px
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+        @media (max-width:992px) {
+            .nav {
+                display: none
+            }
+
+            .hamburger {
+                display: block
+            }
+
+            .mobile-menu {
+                max-height: 0;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                padding: 0;
+                transition: max-height 0.8s ease, padding 0.8s ease;
+            }
+
+            .mobile-menu.open {
+                max-height: 300px;
+                padding: 10px 0;
+            }
+
+            .mobile-menu a {
+                font-size: 1.2rem;
+            }
+
+            header img {
+                height: 85px;
+            }
+
+            header h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width:768px) {
+            .nav {
+                display: none
+            }
+
+            .hamburger {
+                display: block
+            }
+
+            .mobile-menu {
+                max-height: 0;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                padding: 0;
+                transition: max-height 0.8s ease, padding 0.8s ease;
+            }
+
+            .mobile-menu.open {
+                max-height: 300px;
+                padding: 10px 0;
+            }
+
+            .mobile-menu a {
+                font-size: 1rem;
+            }
+
+            header img {
+                height: 70px;
+            }
+
+            header h2 {
+                font-size: 1.6rem;
+            }
+
+            .carousel-img {
+                height: clamp(260px, 100vh, 720px);
+                object-fit: cover;
+            }
+
+            .caption-glass {
+                background: rgba(0, 0, 0, .35);
+                backdrop-filter: saturate(160%) blur(6px);
+                border-radius: 12px;
+                padding: .75rem 1rem;
+            }
+
+            .caption-glass h5 {
+                font-size: 1rem;
+            }
+
+            .caption-glass p {
+                font-style: 0.7rem;
+            }
+        }
+
+        
     </style>
 </head>
 
@@ -55,9 +190,11 @@
 
     <!-- 導覽列 -->
     <header>
-        <div class="container d-flex justify-content-between align-items-center">
+        <div class="container">
             <a href="./index.html" class="text-decoration-none">
-                <h2 class="mb-0 fw-bolder" style="color: #5c4033;"><img src="./images/logo.png" alt="" height="95px" class="me-2">日光烘焙教室</h2>
+                <h2 class="mb-0 fw-bolder" style="color: #5c4033;">
+                    <img src="./images/logo.png" alt="" height="95px" class="me-2">日光烘焙教室
+                </h2>
             </a>
             <div class="nav">
                 <a href="./about.html" class="mx-3 fs-5">關於我們</a>
@@ -66,49 +203,61 @@
                 <a href="./check.html" class="mx-3 fs-5">查詢預約</a>
                 <a href="./contact.html" class="mx-3 fs-5">聯絡我們</a>
             </div>
+            <button class="hamburger" aria-label="展開選單" id="toggleNav">☰</button>
+            <div class="mobile-menu">
+                <a href="./about.html" class="mx-3">關於我們</a>
+                <a href="./courses.html" class="mx-3">課程介紹</a>
+                <a href="./signup.html" class="mx-3">預約課程</a>
+                <a href="./check.html" class="mx-3">查詢預約</a>
+                <a href="./contact.html" class="mx-3">聯絡我們</a>
+            </div>
         </div>
     </header>
 
     <!-- 輪播圖 -->
-    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div id="heroCarousel" class="carousel slide carousel-dark" data-bs-ride="carousel">
+        <!-- 指示點 -->
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+                aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
+
+        <!-- 走馬燈內容 -->
         <div class="carousel-inner">
-            <div class="carousel-inner">
-                <div class="carousel-item active bg-cover"
-                    style="background-image: url('./images/index.png'); height: 90vh; background-size: cover; background-position: center;">
-                    <div class="carousel-caption text-bg d-none d-md-block">
-                        <h5>看似簡單的擠花，其實藏著滿滿的小巧思！</h5>
-                        <p>一起動手做，打造專屬你的療癒系蛋糕。</p>
-                    </div>
+            <!-- 1 -->
+            <div class="carousel-item active" data-bs-interval="5000">
+                <img src="./images/index.png" class="d-block w-100 carousel-img" alt="擠花教學示意">
+                <div class="carousel-caption caption-glass">
+                    <h5>看似簡單的擠花，其實藏著滿滿的小巧思！</h5>
+                    <p>一起動手做，打造專屬你的療癒系蛋糕。</p>
                 </div>
-                <div class="carousel-item bg-cover"
-                    style="background-image: url('./images/index2.png'); height: 90vh; background-size: cover; background-position: center;">
-                    <div class="carousel-caption text-bg d-none d-md-block">
-                        <h5>餅乾也能變身畫布</h5>
-                        <p>用糖霜畫出你的創意，簡單好玩又超療癒！</p>
-                    </div>
+            </div>
+            <!-- 2 -->
+            <div class="carousel-item" data-bs-interval="5000">
+                <img src="./images/index2.png" class="d-block w-100 carousel-img" alt="糖霜餅乾創作">
+                <div class="carousel-caption caption-glass">
+                    <h5>餅乾也能變身畫布</h5>
+                    <p>用糖霜畫出你的創意，簡單好玩又超療癒！</p>
                 </div>
-                <div class="carousel-item bg-cover"
-                    style="background-image: url('./images/index3.png'); height: 90vh; background-size: cover; background-position: center;">
-                    <div class="carousel-caption text-bg d-none d-md-block">
-                        <h5>揉一揉、拍一拍，做出你的第一顆麵包</h5>
-                        <p>不用經驗，只要跟著做，香噴噴麵包你也能做得出來！</p>
-                    </div>
+            </div>
+            <!-- 3 -->
+            <div class="carousel-item" data-bs-interval="5000">
+                <img src="./images/index3.png" class="d-block w-100 carousel-img" alt="手作麵包入門">
+                <div class="carousel-caption caption-glass">
+                    <h5>揉一揉、拍一拍，做出你的第一顆麵包</h5>
+                    <p>不用經驗，只要跟著做，香噴噴麵包你也能做得出來！</p>
                 </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+
+        <!-- 上一張/下一張 -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
@@ -123,6 +272,25 @@
 
     <script src="./js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        const btn = document.getElementById('toggleNav');
+        const mobile = document.querySelector('.mobile-menu');
+
+        btn.addEventListener('click', () => {
+            mobile.classList.toggle('open');
+            const expanded = mobile.classList.contains('open');
+            btn.setAttribute('aria-expanded', expanded);
+        });
+
+        // 點選單後自動收合
+        mobile.addEventListener('click', (e) => {
+            if (e.target.matches('a')) {
+                mobile.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        });
+    </script>
 </body>
 
 </html>

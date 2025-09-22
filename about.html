@@ -26,13 +26,23 @@
             background: linear-gradient(to left, #f6ba4a, #f9eab3);
         }
 
-        .nav a {
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .nav a,
+        .mobile-menu a {
             color: #333;
             transition: all 0.3s ease;
             text-decoration: none;
         }
 
-        .nav a:hover {
+        .nav a:hover,
+        .mobile-menu a:hover {
             color: #a0522d;
             text-decoration: underline;
         }
@@ -47,8 +57,17 @@
             padding: 60px 0;
         }
 
-        h2 {
+        .text h1 {
+            font-size: clamp(1.5rem, 3.6vw, 2.25rem);
+        }
+
+        .text h2 {
             margin-bottom: 30px;
+            font-size: clamp(1.25rem, 2.8vw, 2rem);
+        }
+
+        .test h4 {
+            font-size: clamp(1rem, 2.2vw, 1.25rem);
         }
 
         .img-fluid {
@@ -59,6 +78,77 @@
         .img-fluid:hover {
             transform: scale(1.1, 1.1);
         }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            border: 0;
+            background: transparent;
+            font-size: 26px
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        @media (max-width:992px) {
+            .nav {
+                display: none
+            }
+
+            .hamburger {
+                display: block
+            }
+
+            .mobile-menu {
+                max-height: 0;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                padding: 0;
+                transition: max-height 0.8s ease, padding 0.8s ease;
+            }
+
+            .mobile-menu.open {
+                max-height: 300px;
+                padding: 10px 0;
+            }
+
+            .mobile-menu a {
+                font-size: 1.2rem;
+            }
+
+            header img {
+                height: 85px;
+            }
+
+            header h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width:768px) {
+            .mobile-menu {
+                gap: 8px;
+            }
+
+            .mobile-menu a {
+                font-size: 1rem;
+            }
+
+            header img {
+                height: 70px;
+            }
+
+            header h2 {
+                font-size: 1.6rem;
+            }
+
+            .img-fluid:hover {
+                transform: none;
+            }
+        }
     </style>
 </head>
 
@@ -66,9 +156,10 @@
 
     <!-- 導覽列 -->
     <header>
-        <div class="container d-flex justify-content-between align-items-center">
+        <div class="container">
             <a href="./index.html" class="text-decoration-none">
-                <h2 class="mb-0 fw-bolder" style="color: #5c4033;"><img src="./images/logo.png" alt="" height="95px" class="me-2">日光烘焙教室</h2>
+                <h2 class="mb-0 fw-bolder" style="color: #5c4033;"><img src="./images/logo.png" alt="" height="95px"
+                        class="me-2">日光烘焙教室</h2>
             </a>
             <div class="nav">
                 <a href="./about.html" class="mx-3 fs-5">關於我們</a>
@@ -77,42 +168,61 @@
                 <a href="./check.html" class="mx-3 fs-5">查詢預約</a>
                 <a href="./contact.html" class="mx-3 fs-5">聯絡我們</a>
             </div>
+            <button class="hamburger" aria-label="展開選單" id="toggleNav">☰</button>
+            <div class="mobile-menu">
+                <a href="./about.html" class="mx-3">關於我們</a>
+                <a href="./courses.html" class="mx-3">課程介紹</a>
+                <a href="./signup.html" class="mx-3">預約課程</a>
+                <a href="./check.html" class="mx-3">查詢預約</a>
+                <a href="./contact.html" class="mx-3">聯絡我們</a>
+            </div>
         </div>
     </header>
 
     <main class="flex-grow-1">
         <section id="about" class="container">
-            <div class="row">
-                <h2 class="animate__animated animate__flash">關於我們</h2>
-                <div class="col-md-6 d-flex flex-wrap">
-                    <div class="border rounded bg-white p-2 shadow-lg me-2 overflow-hidden animate__animated animate__fadeInTopLeft animate__delay-1s"
-                        style="width: 300px;">
-                        <img src="./images/about1.png" alt="烘焙教室空間" class="img-fluid rounded mb-3">
-                        <p class="text-muted text-center">環境乾淨又舒適，第一次烘焙也能輕鬆上手。
-                            教室明亮整潔，烘焙變得好親切、好享受。</p>
-                    </div>
-                    <div class="border rounded p-2 bg-white shadow-lg overflow-hidden animate__animated animate__fadeInTopRight animate__delay-1s"
-                        style="width: 300px;">
-                        <img src="./images/about2.png" alt="蛋糕" class="img-fluid rounded mb-3">
-                        <p class="text-muted text-center">不需要高超技巧，也不用繁瑣工具，
-                            只要跟著步驟，就能親手做出屬於自己的美味蛋糕。</p>
-                    </div>
-                    <div class="border rounded p-2 bg-white shadow-lg me-2 mt-2 overflow-hidden animate__animated animate__fadeInBottomLeft animate__delay-1s"
-                        style="width: 300px;">
-                        <img src="./images/about5.png" alt="麵包" class="img-fluid rounded mb-3">
-                        <p class="text-muted text-center">簡單的材料，用雙手揉出最自然的香氣，
-                            不用繁複技巧，也能做出屬於你的溫暖味道。</p>
-                    </div>
-                    <div class="border rounded p-2 bg-white shadow-lg mt-2 overflow-hidden animate__animated animate__fadeInBottomRight animate__delay-1s"
-                        style="width: 300px;">
-                        <img src="./images/about7.png" alt="餅乾" class="img-fluid rounded mb-3">
-                        <p class="text-muted text-center">不管你是一個人來，還是和家人朋友同行，
-                            在這裡，我們一起用雙手揉出甜點、揉進回憶。</p>
+            <h2 class="animate__animated animate__flash mb-5">關於我們</h2>
+            <div class="row g-3 align-items-start">
+                <div class="col-12 col-lg-6 d-flex flex-wrap">
+                    <div class="row row-cols-1 row-cols-sm-2 g-3">
+                        <div class="col">
+                            <div
+                                class="border rounded bg-white p-2 shadow-lg overflow-hidden animate__animated animate__fadeInTopLeft animate__delay-1s">
+                                <img src="./images/about1.png" alt="烘焙教室空間" class="img-fluid rounded mb-3">
+                                <p class="text-muted text-center">環境乾淨又舒適，第一次烘焙也能輕鬆上手。
+                                    教室明亮整潔，烘焙變得好親切、好享受。</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div
+                                class="border rounded p-2 bg-white shadow-lg overflow-hidden animate__animated animate__fadeInTopRight animate__delay-1s">
+                                <img src="./images/about2.png" alt="蛋糕" class="img-fluid rounded mb-3">
+                                <p class="text-muted text-center">不需要高超技巧，也不用繁瑣工具，
+                                    只要跟著步驟，就能親手做出屬於自己的美味蛋糕。</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div
+                                class="border rounded p-2 bg-white shadow-lg overflow-hidden animate__animated animate__fadeInBottomLeft animate__delay-1s">
+                                <img src="./images/about5.png" alt="麵包" class="img-fluid rounded mb-3">
+                                <p class="text-muted text-center">簡單的材料，用雙手揉出最自然的香氣，
+                                    不用繁複技巧，也能做出屬於你的溫暖味道。</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div
+                                class="border rounded p-2 bg-white shadow-lg overflow-hidden animate__animated animate__fadeInBottomRight animate__delay-1s">
+                                <img src="./images/about7.png" alt="餅乾" class="img-fluid rounded mb-3">
+                                <p class="text-muted text-center">不管你是一個人來，還是和家人朋友同行，
+                                    在這裡，我們一起用雙手揉出甜點、揉進回憶。</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="align-items-center pt-5">
-                        <h1 style="color: #5c4033;" class="mt-5 fw-bolder animate__animated animate__jackInTheBox animate__delay-2s">用陽光烘焙每一天的溫度
+                <div class="col-12 col-lg-6">
+                    <div class="text align-items-center pt-5">
+                        <h1 style="color: #5c4033;"
+                            class="mt-5 fw-bolder animate__animated animate__jackInTheBox animate__delay-2s">用陽光烘焙每一天的溫度
                         </h1>
                         <h4 class="mt-3">日光烘焙教室，是一個專為初學者打造的甜點學習空間。</h4>
                         <p class="mt-5" style="color: #333;">
@@ -138,6 +248,25 @@
 
     <script src="./js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        const btn = document.getElementById('toggleNav');
+        const mobile = document.querySelector('.mobile-menu');
+
+        btn.addEventListener('click', () => {
+            mobile.classList.toggle('open');
+            const expanded = mobile.classList.contains('open');
+            btn.setAttribute('aria-expanded', expanded);
+        });
+
+        // 點選單後自動收合
+        mobile.addEventListener('click', (e) => {
+            if (e.target.matches('a')) {
+                mobile.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        });
+    </script>
 </body>
 
 </html>

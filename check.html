@@ -19,6 +19,14 @@
             flex-direction: column;
         }
 
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+
         main {
             flex: 1;
         }
@@ -27,13 +35,15 @@
             background: linear-gradient(to left, #f6ba4a, #f9eab3);
         }
 
-        .nav a {
+        .nav a,
+        .mobile-menu a {
             color: #333;
             transition: all 0.3s ease;
             text-decoration: none;
         }
 
-        .nav a:hover {
+        .nav a:hover,
+        .mobile-menu a:hover {
             color: #a0522d;
             text-decoration: underline;
         }
@@ -51,15 +61,83 @@
             padding: 20px 0;
             text-align: center;
         }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            border: 0;
+            background: transparent;
+            font-size: 26px
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        @media (max-width:992px) {
+            .nav {
+                display: none
+            }
+
+            .hamburger {
+                display: block
+            }
+
+            .mobile-menu {
+                max-height: 0;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                padding: 0;
+                transition: max-height 0.8s ease, padding 0.8s ease;
+            }
+
+            .mobile-menu.open {
+                max-height: 300px;
+                padding: 10px 0;
+            }
+
+            .mobile-menu a {
+                font-size: 1.2rem;
+            }
+
+            header img {
+                height: 85px;
+            }
+
+            header h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width:768px) {
+            .mobile-menu {
+                gap: 8px;
+            }
+
+            .mobile-menu a {
+                font-size: 1rem;
+            }
+
+            header img {
+                height: 70px;
+            }
+
+            header h2 {
+                font-size: 1.6rem;
+            }
+        }
     </style>
 </head>
 
 <body>
     <!-- 導覽列 -->
     <header>
-        <div class="container d-flex justify-content-between align-items-center">
+        <div class="container">
             <a href="./index.html" class="text-decoration-none">
-                <h2 class="mb-0 fw-bolder" style="color: #5c4033;"><img src="./images/logo.png" alt="" height="95px" class="me-2">日光烘焙教室</h2>
+                <h2 class="mb-0 fw-bolder" style="color: #5c4033;"><img src="./images/logo.png" alt="" height="95px"
+                        class="me-2">日光烘焙教室</h2>
             </a>
             <div class="nav">
                 <a href="./about.html" class="mx-3 fs-5">關於我們</a>
@@ -67,6 +145,14 @@
                 <a href="./signup.html" class="mx-3 fs-5">預約課程</a>
                 <a href="./check.html" class="mx-3 fs-5">查詢預約</a>
                 <a href="./contact.html" class="mx-3 fs-5">聯絡我們</a>
+            </div>
+            <button class="hamburger" aria-label="展開選單" id="toggleNav">☰</button>
+            <div class="mobile-menu">
+                <a href="./about.html" class="mx-3">關於我們</a>
+                <a href="./courses.html" class="mx-3">課程介紹</a>
+                <a href="./signup.html" class="mx-3">預約課程</a>
+                <a href="./check.html" class="mx-3">查詢預約</a>
+                <a href="./contact.html" class="mx-3">聯絡我們</a>
             </div>
         </div>
     </header>
@@ -171,6 +257,24 @@
                 .catch(err => {
                     console.error("發生錯誤", err);
                 });
+        });
+
+        // 選單
+        const btn = document.getElementById('toggleNav');
+        const mobile = document.querySelector('.mobile-menu');
+
+        btn.addEventListener('click', () => {
+            mobile.classList.toggle('open');
+            const expanded = mobile.classList.contains('open');
+            btn.setAttribute('aria-expanded', expanded);
+        });
+
+        // 點選單後自動收合
+        mobile.addEventListener('click', (e) => {
+            if (e.target.matches('a')) {
+                mobile.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+            }
         });
 
     </script>
