@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>日光烘培教室</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #fffaf5;
+        }
+
+        header {
+            background: linear-gradient(to left, #f6ba4a, #f9eab3);
+        }
+
+        .footer {
+            background-color: #f9eab3;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .text-bg {
+            background-color: rgba(0, 0, 0, 0.4);
+            color: #fffaf5;
+        }
+
+        h5,
+        p {
+            color: #fffaf5;
+        }
+
+        .nav a {
+            color: #333;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav a:hover {
+            color: #a0522d;
+            text-decoration: underline;
+        }
+
+        .bg-cover {
+            background-position: center center;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 導覽列 -->
+    <header>
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="./index.html" class="text-decoration-none">
+                <h2 class="mb-0 fw-bolder" style="color: #5c4033;"><img src="./images/logo.png" alt="" height="95px" class="me-2">日光烘焙教室</h2>
+            </a>
+            <div class="nav">
+                <a href="./about.html" class="mx-3 fs-5">關於我們</a>
+                <a href="./courses.html" class="mx-3 fs-5">課程介紹</a>
+                <a href="./signup.html" class="mx-3 fs-5">預約課程</a>
+                <a href="./check.html" class="mx-3 fs-5">查詢預約</a>
+                <a href="./contact.html" class="mx-3 fs-5">聯絡我們</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 輪播圖 -->
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-inner">
+                <div class="carousel-item active bg-cover"
+                    style="background-image: url('./images/index.png'); height: 90vh; background-size: cover; background-position: center;">
+                    <div class="carousel-caption text-bg d-none d-md-block">
+                        <h5>看似簡單的擠花，其實藏著滿滿的小巧思！</h5>
+                        <p>一起動手做，打造專屬你的療癒系蛋糕。</p>
+                    </div>
+                </div>
+                <div class="carousel-item bg-cover"
+                    style="background-image: url('./images/index2.png'); height: 90vh; background-size: cover; background-position: center;">
+                    <div class="carousel-caption text-bg d-none d-md-block">
+                        <h5>餅乾也能變身畫布</h5>
+                        <p>用糖霜畫出你的創意，簡單好玩又超療癒！</p>
+                    </div>
+                </div>
+                <div class="carousel-item bg-cover"
+                    style="background-image: url('./images/index3.png'); height: 90vh; background-size: cover; background-position: center;">
+                    <div class="carousel-caption text-bg d-none d-md-block">
+                        <h5>揉一揉、拍一拍，做出你的第一顆麵包</h5>
+                        <p>不用經驗，只要跟著做，香噴噴麵包你也能做得出來！</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <!-- 頁尾 -->
+    <footer class="footer">
+        <div class="container">
+            <p class="mb-0" style="color: #333;">© 2025 日光烘焙教室 Daylight Baking</p>
+        </div>
+    </footer>
+
+
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>

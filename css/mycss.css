@@ -1,0 +1,14 @@
+
+body {
+    background-color: #fdfcf7;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    color: #3c3c3c;
+    margin-bottom: 1rem;
+}
+
+a.btn {
+    margin-right: 0.5rem;
+}

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>日光烘培教室 | 預約課程</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        html,
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #fffaf5;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        header {
+            background: linear-gradient(to left, #f6ba4a, #f9eab3);
+        }
+
+        .nav a {
+            color: #333;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav a:hover {
+            color: #a0522d;
+            text-decoration: underline;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        h2 {
+            margin-bottom: 30px;
+        }
+
+        .footer {
+            background-color: #f9eab3;
+            padding: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 導覽列 -->
+    <header>
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="./index.html" class="text-decoration-none">
+                <h2 class="mb-0 fw-bolder" style="color: #5c4033;"><img src="./images/logo.png" alt="" height="95px" class="me-2">日光烘焙教室</h2>
+            </a>
+            <div class="nav">
+                <a href="./about.html" class="mx-3 fs-5">關於我們</a>
+                <a href="./courses.html" class="mx-3 fs-5">課程介紹</a>
+                <a href="./signup.html" class="mx-3 fs-5">預約課程</a>
+                <a href="./check.html" class="mx-3 fs-5">查詢預約</a>
+                <a href="./contact.html" class="mx-3 fs-5">聯絡我們</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow-1">
+        <section id="signup" class="bg-light">
+            <div class="container">
+                <div class="row">
+                    <h2 class="animate__animated animate__flash">課程報名</h2>
+                    <div class="col-md-6 offset-md-3">
+                        <form id="searchForm" class="animate__animated animate__pulse" action="insert.php"
+                            method="POST">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">姓名</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="請輸入您的姓名">
+                                <div class="valid-feedback" id="name_valid-feedback">姓名符合規定</div>
+                                <div class="invalid-feedback" id="name_invalid-feedback">請輸入至少兩個字的姓名，且不得含有符號</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">電話</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" placeholder="請輸入的電話">
+                                <div class="valid-feedback" id="phone_valid-feedback">電話符合規定</div>
+                                <div class="invalid-feedback" id="phone_invalid-feedback">請輸入正確的電話號碼</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">電子信箱</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="請輸入電子信箱">
+                                <div class="valid-feedback" id="email_valid-feedback">電子信箱符合規定</div>
+                                <div class="invalid-feedback" id="email_invalid-feedback">請輸入正確的電子信箱格式</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="people" class="form-label d-flex justify-content-between">
+                                    <span>人數選擇</span>
+                                    <span class="text-muted">※團體報名，請來電預約報名</span></label>
+                                <select id="people" name="people" class="form-select">
+                                    <option disabled selected>---請選擇人數---</option>
+                                    <option>1位</option>
+                                    <option>2位</option>
+                                    <option>3位</option>
+                                </select>
+                                <div class="valid-feedback" id="people_valid-feedback">人數確認</div>
+                                <div class="invalid-feedback" id="people_invalid-feedback">請選擇人數</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="course" class="form-label">課程選擇</label>
+                                <select class="form-select" id="course" name="course">
+                                    <option selected disabled>---請選擇課程---</option>
+                                    <option>基礎蛋糕製作</option>
+                                    <option>天然酵母麵包</option>
+                                    <option>造型餅乾課程</option>
+                                </select>
+                                <div class="valid-feedback" id="course_valid-feedback">課程確認</div>
+                                <div class="invalid-feedback" id="course_invalid-feedback">請選擇課程</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="date" class="form-label">上課日期</label>
+                                <input type="date" class="form-control" id="date" name="date">
+                                <div class="valid-feedback" id="date_valid-feedback">日期確認</div>
+                                <div class="invalid-feedback" id="date_invalid-feedback">請選擇日期</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="time" class="form-label">上課時間</label>
+                                <input type="time" name="time" class="form-control" id="time">
+                                <div class="valid-feedback" id="time_valid-feedback">時間確認</div>
+                                <div class="invalid-feedback" id="time_invalid-feedback">請選擇時間</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">備註</label>
+                                <textarea class="form-control" id="message" name="message" rows="3"
+                                    placeholder="請輸入任何備註或特殊需求"></textarea>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn btn-outline-danger d-flex justify-content-end"
+                                    id="confirm">預約課程</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <footer class="footer">
+        <div class="container">
+            <p class="mb-0" style="color: #333;">© 2025 日光烘焙教室 Daylight Baking</p>
+        </div>
+    </footer>
+
+
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/jquery-3.7.1.js"></script>
+
+    <script>
+        // $("#confirm").click(function (e) {
+        //     e.preventDefault(); // 防止表單提交
+        //     Swal.fire({
+        //         title: "送出表單！",
+        //         icon: "success",
+        //         draggable: true
+        //     }).then(() => {
+        //         $("#searchForm").submit(); // SweetAlert OK 後再送出表單
+        //     });
+        // });
+
+        // 表單驗證
+        document.getElementById("searchForm").addEventListener("submit", function (e) {
+            e.preventDefault(); // 阻止表單提交
+
+            // 取得表單欄位
+            const nameInput = document.getElementById("name");
+            const nameValue = nameInput.value.trim(); //使用者輸入的值
+            const phoneInput = document.getElementById("phone");
+            const phoneValue = phoneInput.value.trim();
+            const emailInput = document.getElementById("email");
+            const emailValue = emailInput.value.trim();
+            const peopleInput = document.getElementById("people");
+            const peopleValue = peopleInput.value;
+            const courseInput = document.getElementById("course");
+            const courseValue = courseInput.value;
+            const dateInput = document.getElementById("date");
+            const dateValue = dateInput.value;
+            const timeInput = document.getElementById("time");
+            const timeValue = timeInput.value;
+            const symbol = /[^a-zA-Z\u4e00-\u9fa5]/; // 定義符號正則表達式
+            //驗證旗幟
+            let isValid = true;
+
+            // 驗證姓名
+            if (nameValue === "" || symbol.test(nameValue) || nameValue.length < 2) {
+                nameInput.classList.add("is-invalid");
+                nameInput.classList.remove("is-valid");
+                isValid = false;
+                console.log("姓名驗證失敗");
+            } else {
+                nameInput.classList.remove("is-invalid");
+                nameInput.classList.add("is-valid");
+                isValid = true;
+                console.log("姓名驗證成功");
+            }
+
+            //驗證電話
+            if (phoneValue === "" || symbol.test(phoneValue) || phoneValue.length < 10) {
+                phoneInput.classList.add("is-invalid");
+                phoneInput.classList.remove("is-valid");
+                isValid = false;
+                console.log("電話驗證失敗");
+            } else {
+                phoneInput.classList.remove("is-invalid");
+                phoneInput.classList.add("is-valid");
+                isValid = true;
+                console.log("電話驗證成功");
+            }
+            
+
+            // 驗證電子信箱
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // 正則表達式驗證電子信箱格式
+            if (emailValue === "" || !emailRegex.test(emailValue)) {
+                emailInput.classList.add("is-invalid");
+                emailInput.classList.remove("is-valid");
+                isValid = false;
+                console.log("電子信箱驗證失敗");
+            } else {
+                emailInput.classList.remove("is-invalid");
+                emailInput.classList.add("is-valid");
+                isValid = true;
+                console.log("電子信箱驗證成功");
+            }
+
+            // 驗證人數選擇
+            if (peopleValue === "" || peopleValue === "---請選擇人數---") {
+                peopleInput.classList.add("is-invalid");
+                peopleInput.classList.remove("is-valid");
+                isValid = false;
+                console.log("人數選擇驗證失敗");
+            } else {
+                peopleInput.classList.remove("is-invalid");
+                peopleInput.classList.add("is-valid")
+                isValid = true;
+                console.log("人數選擇驗證成功");
+            }
+
+            // 驗證課程選擇
+            if (courseValue === "" || courseValue === "---請選擇課程---") {
+                courseInput.classList.add("is-invalid");
+                courseInput.classList.remove("is-valid");
+                isValid = false;
+                console.log("課程選擇驗證失敗");
+            } else {
+                courseInput.classList.remove("is-invalid");
+                courseInput.classList.add("is-valid");
+                isValid = true;
+                console.log("課程選擇驗證成功");
+            }
+
+            // 驗證日期
+            if (dateValue === "") {
+                dateInput.classList.add("is-invalid");
+                dateInput.classList.remove("is-valid");
+                isValid = false;
+                console.log("日期驗證失敗");
+            } else {
+                dateInput.classList.remove("is-invalid");
+                dateInput.classList.add("is-valid");
+                isValid = true;
+                console.log("日期驗證成功");
+            }
+
+            // 驗證時間
+            if (timeValue === "") {
+                timeInput.classList.add("is-invalid");
+                timeInput.classList.remove("is-valid");
+                isValid = false;
+                console.log("時間驗證失敗");
+            } else {
+                timeInput.classList.remove("is-invalid");
+                timeInput.classList.add("is-valid");
+                isValid = true;
+                console.log("時間驗證成功");
+            }
+            if(!isValid){ // 如果有任何欄位驗證失敗，就不繼續送出表單
+                return;
+            }
+
+
+
+            Swal.fire({
+                title: "是否送出表單？",
+                showDenyButton: true,
+                confirmButtonText: "確認",
+                denyButtonText: `取消`
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit(); // 提交表單     
+                }else if (result.isDenied) {
+                    Swal.fire("已取消", "", "info");
+                }
+            });
+        });
+
+
+
+    </script>
+</body>
+
+</html>
